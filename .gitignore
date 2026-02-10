@@ -1,0 +1,12 @@
+DVLD/.idea
+DVLD/.vs
+DVLD/bin
+DVLD/obj
+
+DVLD_Buisness/.vs
+DVLD_Buisness/bin
+DVLD_Buisness/obj
+
+DVLD_DataAccess/.vs
+DVLD_DataAccess/bin
+DVLD_DataAccess/obj
