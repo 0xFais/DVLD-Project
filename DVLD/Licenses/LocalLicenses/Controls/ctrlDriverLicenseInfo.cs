@@ -47,13 +47,13 @@ namespace DVLD.Licenses.LocalLicenses.Controls
             lblLicenseID.Text = _LicenseInfo.LicenseID.ToString();
             lblNationalNo.Text = _PersonInfo.NationalNo;
             lblGender.Text = _PersonInfo.Gender == 1 ? "Male" : "Female";
-            lblIssueDate.Text = _LicenseInfo.IssueDate.ToString();
+            lblIssueDate.Text = _LicenseInfo.IssueDate.ToShortDateString();
             lblIssueReason.Text = _LicenseInfo.IssueReasonText;
             lblNotes.Text = _LicenseInfo.Notes;
             lblActive.Text = _LicenseInfo.IsActive ? "Active" : "Not Active";
-            lblDateOfBirth.Text = _PersonInfo.DateOfBirth.ToString();
+            lblDateOfBirth.Text = _PersonInfo.DateOfBirth.ToShortDateString();
             lblDriverID.Text = _DriverInfo.DriverID.ToString();
-            lblExpirationDate.Text = _LicenseInfo.ExpirationDate.ToString();
+            lblExpirationDate.Text = _LicenseInfo.ExpirationDate.ToShortDateString();
             lblIsDetained.Text = "";
         }
         public bool LoadDriverLicense(int LicenseID)
