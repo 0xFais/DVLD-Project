@@ -92,6 +92,7 @@ namespace DVLD_Buisness
                 {
                     return false;
                 }
+                this.ApplicationID = this.ApplicationInfo.ApplicationID;
                 return _AddNewInternationalLicense();
             }
             else if(this.Mode == enMode.Update)
