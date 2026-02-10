@@ -86,7 +86,6 @@ namespace DVLD_Buisness
         }
         public bool Save()
         {
-            //adding somenotes
             if(this.Mode == enMode.AddNew)
             {
                 if(!this.ApplicationInfo.Save())
