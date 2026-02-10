@@ -62,7 +62,7 @@ namespace DVLD.Drivers
 
         private void showLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frm = new frmShowPersonLIcenseHistory((int)dgvDrivers.CurrentRow.Cells[1].Value);
+            Form frm = new frmShowPersonLicenseHistory((int)dgvDrivers.CurrentRow.Cells[1].Value);
             frm.ShowDialog();
         }
 

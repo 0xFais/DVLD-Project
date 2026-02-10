@@ -279,13 +279,13 @@ namespace DVLD.Applications.LocalDrivingLicenseApplications
 
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frm = new frmShowLicenseInfo(clsLocalDrivingLicenseApplication.Find((int)dgvLDLA.CurrentRow.Cells[0].Value).ApplicationID);
+            Form frm = new frmShowLicenseInfo(clsLicense.FindByApplicationID(clsLocalDrivingLicenseApplication.Find((int)dgvLDLA.CurrentRow.Cells[0].Value).ApplicationID).LicenseID);
             frm.ShowDialog();
         }
 
         private void personLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frm = new frmShowPersonLIcenseHistory(clsPerson.Find(dgvLDLA.CurrentRow.Cells[2].Value.ToString()).PersonID);
+            Form frm = new frmShowPersonLicenseHistory(clsPerson.Find(dgvLDLA.CurrentRow.Cells[2].Value.ToString()).PersonID);
             frm.ShowDialog();
         }
     }

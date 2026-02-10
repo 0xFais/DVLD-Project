@@ -1,6 +1,6 @@
 ﻿namespace DVLD.Licenses
 {
-    partial class frmShowPersonLIcenseHistory
+    partial class frmShowPersonLicenseHistory
     {
         /// <summary>
         /// Required designer variable.
@@ -77,7 +77,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlPersonCard1);
             this.Controls.Add(this.ctrlLicenseHistory1);
-            this.Name = "frmShowPersonLIcenseHistory";
+            this.Name = "frmShowPersonLicenseHistory";
             this.Text = "frmShowPersonLIcenseHistory";
             this.Load += new System.EventHandler(this.frmShowPersonLIcenseHistory_Load);
             this.ResumeLayout(false);

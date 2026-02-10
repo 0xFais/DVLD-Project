@@ -13,12 +13,11 @@ namespace DVLD.Licenses.LocalLicenses
 {
     public partial class frmShowLicenseInfo : Form
     {
-        private int _LicenseID { get; set; }
-        public frmShowLicenseInfo(int ApplicationID)
+        public int LicenseID { get; private set; }
+        public frmShowLicenseInfo(int LicenseID)
         {
             InitializeComponent();
-            clsLicense license = clsLicense.FindByApplicationID(ApplicationID); 
-            _LicenseID = license.LicenseID;
+            this.LicenseID = LicenseID;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -28,7 +27,7 @@ namespace DVLD.Licenses.LocalLicenses
 
         private void frmShowLicenseInfo_Load(object sender, EventArgs e)
         {
-            ctrlDriverLicenseInfo1.LoadDriverLicense(_LicenseID);
+            ctrlDriverLicenseInfo1.LoadDriverLicense(LicenseID);
         }
     }
 }

@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace DVLD.Licenses
 {
-    public partial class frmShowPersonLIcenseHistory : Form
+    public partial class frmShowPersonLicenseHistory : Form
     {
         public int PersonID { get; private set; }
-        public frmShowPersonLIcenseHistory(int PerosnID)
+        public frmShowPersonLicenseHistory(int PerosnID)
         {
             InitializeComponent();
             this.PersonID = PerosnID;
