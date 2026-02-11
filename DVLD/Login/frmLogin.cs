@@ -16,18 +16,16 @@ namespace DVLD.Login
 
         private void RememberMe()
         {
+            if (File.Exists("RememberMe.txt") && !cBoxRememberMe.Checked)
+            {
+                File.Delete("RememberMe.txt");
+                return;
+            }
             if (cBoxRememberMe.Checked)
             {
                 string path = "RememberMe.txt";
                 string content = txtUserName.Text + "\n" + txtPassword.Text;
-                File.AppendAllText(path, content);
-            }
-            else
-            {
-                if (File.Exists("RememberMe.txt"))
-                {
-                    File.Delete("RememberMe.txt");
-                }
+                File.WriteAllText(path, content);
             }
         }
 
