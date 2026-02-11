@@ -129,11 +129,11 @@
     <Compile Include="Licenses\frmShowPersonLicenseHistory.Designer.cs">
       <DependentUpon>frmShowPersonLicenseHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Licenses\InternationalLicenses\Controls\ctrlShowInternationalLicenseInfo.cs">
+    <Compile Include="Licenses\InternationalLicenses\Controls\ctrlDriverInternationalLicenseInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Licenses\InternationalLicenses\Controls\ctrlShowInternationalLicenseInfo.Designer.cs">
-      <DependentUpon>ctrlShowInternationalLicenseInfo.cs</DependentUpon>
+    <Compile Include="Licenses\InternationalLicenses\Controls\ctrlDriverInternationalLicenseInfo.Designer.cs">
+      <DependentUpon>ctrlDriverInternationalLicenseInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Licenses\InternationalLicenses\frmInternationalLicenseInfo.cs">
       <SubType>Form</SubType>
@@ -308,8 +308,8 @@
     <EmbeddedResource Include="Licenses\frmShowPersonLicenseHistory.resx">
       <DependentUpon>frmShowPersonLicenseHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Licenses\InternationalLicenses\Controls\ctrlShowInternationalLicenseInfo.resx">
-      <DependentUpon>ctrlShowInternationalLicenseInfo.cs</DependentUpon>
+    <EmbeddedResource Include="Licenses\InternationalLicenses\Controls\ctrlDriverInternationalLicenseInfo.resx">
+      <DependentUpon>ctrlDriverInternationalLicenseInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Licenses\InternationalLicenses\frmInternationalLicenseInfo.resx">
       <DependentUpon>frmInternationalLicenseInfo.cs</DependentUpon>

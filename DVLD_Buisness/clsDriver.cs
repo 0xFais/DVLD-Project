@@ -14,12 +14,14 @@ namespace DVLD_Buisness
         public enMode _Mode { get; private set; }
         public int DriverID { get; private set; }
         public int PersonID { get; set; }
+        public clsPerson PersonInfo { get; private set; }
         public int CreatedByUserID { get; set; }
         public DateTime CreatedDate { get; private set; }
         private clsDriver(int driverID, int personID, int createdByUserID, DateTime createdDate)
         {
             DriverID = driverID;
             PersonID = personID;
+            PersonInfo = clsPerson.Find(PersonID);
             CreatedByUserID = createdByUserID;
             CreatedDate = createdDate;
             _Mode = enMode.Update;
@@ -29,6 +31,7 @@ namespace DVLD_Buisness
         {
             PersonID = personID;
             CreatedByUserID = createdByUserID;
+            PersonInfo = clsPerson.Find(PersonID);
             _Mode = enMode.AddNew;
         }
         public static clsDriver FindByDriverID(int DriverID)

@@ -1,10 +1,11 @@
-﻿using System;
-using System.Data;
-using System.Windows.Forms;
-using DVLD_Buisness;
-using DVLD.Licenses;
+﻿using DVLD.Licenses;
+using DVLD.Licenses.InternationalLicenses;
 using DVLD.Licenses.LocalLicenses;
 using DVLD.People;
+using DVLD_Buisness;
+using System;
+using System.Data;
+using System.Windows.Forms;
 
 namespace DVLD.Applications.InternationalDrivingLicenseApplications
 {
@@ -111,7 +112,7 @@ namespace DVLD.Applications.InternationalDrivingLicenseApplications
 
         private void showLicenseDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frm = new frmShowLicenseInfo((int)dgvILApps.CurrentRow.Cells[0].Value);
+            Form frm = new frmInternationalLicenseInfo((int)dgvILApps.CurrentRow.Cells[0].Value);
             frm.ShowDialog();
         }
 
