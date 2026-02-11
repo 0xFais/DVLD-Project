@@ -75,22 +75,31 @@ namespace DVLD
             Form frm = new frmLocalDrivingLIcenseApplicationsList();
             frm.ShowDialog();
         }
-
-        private void localDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form frm = new frmAddUpdateLocalDrivingLicenseApplications();
-            frm.ShowDialog();
-        }
-
         private void driversToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form frm = new frmDriversList();
             frm.ShowDialog();
         }
+        private void localToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = new frmAddUpdateLocalDrivingLicenseApplications();
+            frm.ShowDialog();
+        }
 
-        private void internationalDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        private void internationalToolStripMenuItem_Click(object sender, EventArgs e)
         {
            Form frm = new frmAddNewInternationalLicense();
+            frm.ShowDialog();
+        }
+
+        private void renewDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void internationalDrivingLicensApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = new frmListInternationalDrivingLicenseApplications();
             frm.ShowDialog();
         }
     }

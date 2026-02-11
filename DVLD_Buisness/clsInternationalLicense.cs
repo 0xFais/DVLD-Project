@@ -1,6 +1,7 @@
 ﻿using DVLD_DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -106,7 +107,10 @@ namespace DVLD_Buisness
             return clsInternationalLicenseData.DoesThisLocalLicenseHaveAnInternationalLicense(LocalLicenseID);
         }
 
-
+        public static DataTable GetAllInternationalLicenses()
+        { 
+            return clsInternationalLicenseData.GetAllInternationlLicenses();
+        }
 
 
 
