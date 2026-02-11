@@ -1,6 +1,7 @@
 ﻿using DVLD.GlobalClasses;
 using DVLD_Buisness;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace DVLD.Login
@@ -10,8 +11,37 @@ namespace DVLD.Login
         public frmLogin()
         {
             InitializeComponent();
+            LoadRememberMe();
         }
 
+        private void RememberMe()
+        {
+            if (cBoxRememberMe.Checked)
+            {
+                string path = "RememberMe.txt";
+                string content = txtUserName.Text + "\n" + txtPassword.Text;
+                File.AppendAllText(path, content);
+            }
+            else
+            {
+                if (File.Exists("RememberMe.txt"))
+                {
+                    File.Delete("RememberMe.txt");
+                }
+            }
+        }
+
+        private void LoadRememberMe()
+        {
+            if (!File.Exists("RememberMe.txt"))
+            {
+                return;
+            }
+            string[] UserPassword = File.ReadAllLines("RememberMe.txt");
+            txtUserName.Text = UserPassword[0];
+            txtPassword.Text =  UserPassword[1];
+            cBoxRememberMe.Checked = true;
+        }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             clsGlobal.User = clsUser.FindByUserNameAndPassword(txtUserName.Text, txtPassword.Text);
@@ -25,6 +55,8 @@ namespace DVLD.Login
                 MessageBox.Show("This User is not active ", "Error", MessageBoxButtons.OK);
                 return;
             }
+
+            RememberMe();
             this.Hide();
             Form frm = new frmMain();
             frm.ShowDialog();

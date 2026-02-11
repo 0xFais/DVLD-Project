@@ -36,7 +36,7 @@ namespace DVLD_Buisness
             this.ApplicationInfo.CreatedByUserID = CreatedByUserID;
             this.ApplicationInfo.ApplicationStatus = clsApplications.enStatus.Completed;
             this.ApplicationInfo.ApplicationType = clsApplicationTypes.enApplicationType.NewInternationalLicense;
-
+            
             this.DriverID = clsDriver.FindByPersonID(ApplicationInfo.ApplicantPersonID).DriverID;
             this.IssueUsingLocalLicenseID = LocalLicenseID;
             this.IssueDate = DateTime.Now;
