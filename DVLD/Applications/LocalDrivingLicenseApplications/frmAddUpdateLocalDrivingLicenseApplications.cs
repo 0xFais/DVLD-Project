@@ -82,7 +82,7 @@ namespace DVLD.Applications.LocalDrivingLicenseApplications
             ctrlPersonCardFilter1.LoadPersonValuesByID(-1);
             lblAppDate.Text = DateTime.Now.ToShortDateString();
             lblAppFees.Text = "15";
-            lblCreatedByUserName.Text = "?????";
+            lblCreatedByUserName.Text = clsGlobal.User.UserID.ToString();
             lblLDLAppID.Text = "?????";
             cboxLicenseClass.SelectedItem = "Class 3 - Ordinary Driving License";
             lblTitle.Text = "Add New Local Driving License Application";
