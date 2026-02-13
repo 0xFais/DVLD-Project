@@ -8,6 +8,7 @@ namespace DVLD_DataAccess
     {
         static public DataTable GetAllApplicationType()
         {
+
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = "select * from ApplicationTypes order by ApplicationTypeID";
             SqlCommand command = new SqlCommand(query, connection);
