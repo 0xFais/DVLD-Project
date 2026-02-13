@@ -6,6 +6,7 @@ namespace DVLD_DataAccess
 {
     public class clsApplicationTypeData
     {
+
         static public DataTable GetAllApplicationType()
         {
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
