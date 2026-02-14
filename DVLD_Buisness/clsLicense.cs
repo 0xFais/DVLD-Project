@@ -14,7 +14,7 @@ namespace DVLD_Buisness
     public class clsLicense
     {
         public enum enMode { AddNew = 1, Update = 2 }
-        public enMode _Mode {  get; private set; }
+        public enMode _Mode { get; private set; }
         public int LicenseID { get; private set; }
         public clsLicenseClass LicenseClassInfo { get; set; }
         public int ApplicationID { get; set; }
@@ -67,7 +67,7 @@ namespace DVLD_Buisness
             _Mode = enMode.Update;
 
         }
-        public clsLicense(int applicationID, int driverID, int licenseClassID,string notes, float paidFees, bool isActive, enIssueReason issueReason, int createdByUserID)
+        public clsLicense(int applicationID, int driverID, int licenseClassID, string notes, enIssueReason issueReason, int createdByUserID)
         {
             LicenseID = -1;
             ApplicationID = applicationID;
@@ -77,8 +77,8 @@ namespace DVLD_Buisness
             IssueDate = DateTime.Today;
             ExpirationDate = DateTime.Today.AddYears(LicenseClassInfo.DefaultValidityLength);
             Notes = notes;
-            PaidFees = paidFees;
-            IsActive = isActive;
+            PaidFees = this.LicenseClassInfo.ClassFees;
+            IsActive = true;
             IssueReason = issueReason;
             CreatedByUserID = createdByUserID;
             _Mode = enMode.AddNew;
@@ -91,7 +91,7 @@ namespace DVLD_Buisness
             string notes = string.Empty;
             float paidFees = 0.0f;
             bool isActive = false;
-            if (clsLicenseData.GetLicenseByID(licenseID, ref appID, ref driverID, ref licenseClassID, ref issueDate, ref expirationDate, ref notes, ref paidFees, ref isActive,ref issueReason, ref createdByUserID))
+            if (clsLicenseData.GetLicenseByID(licenseID, ref appID, ref driverID, ref licenseClassID, ref issueDate, ref expirationDate, ref notes, ref paidFees, ref isActive, ref issueReason, ref createdByUserID))
             {
                 return new clsLicense(licenseID, appID, driverID, licenseClassID, issueDate, expirationDate, notes, paidFees, isActive, (enIssueReason)issueReason, createdByUserID);
             }
@@ -105,7 +105,7 @@ namespace DVLD_Buisness
             string notes = string.Empty;
             float paidFees = 0.0f;
             bool isActive = false;
-            if (clsLicenseData.GetLicenseByApplicationID(ref licenseID, ApplicationID, ref driverID, ref licenseClassID, ref issueDate, ref expirationDate, ref notes, ref paidFees, ref isActive,ref issueReason, ref createdByUserID))
+            if (clsLicenseData.GetLicenseByApplicationID(ref licenseID, ApplicationID, ref driverID, ref licenseClassID, ref issueDate, ref expirationDate, ref notes, ref paidFees, ref isActive, ref issueReason, ref createdByUserID))
             {
                 return new clsLicense(licenseID, ApplicationID, driverID, licenseClassID, issueDate, expirationDate, notes, paidFees, isActive, (enIssueReason)issueReason, createdByUserID);
             }
@@ -126,10 +126,10 @@ namespace DVLD_Buisness
         }
         public bool Save()
         {
-            switch(_Mode)
+            switch (_Mode)
             {
                 case enMode.AddNew:
-                    if(!_AddNewLicense())
+                    if (!_AddNewLicense())
                     {
                         return false;
                     }
@@ -143,12 +143,13 @@ namespace DVLD_Buisness
         }
         public bool Delete()
         {
-            if (_Mode == enMode.AddNew) { return false; };
+            if (_Mode == enMode.AddNew) { return false; }
+            ;
             return clsLicenseData.DeleteLicense(this.LicenseID);
         }
-        public static bool DoesDriverHaveThisLicenseClass(int DriverID,clsLicenseClass.enLicenseClass licenseClass )
+        public static bool DoesDriverHaveThisLicenseClass(int DriverID, clsLicenseClass.enLicenseClass licenseClass)
         {
-            return clsLicenseData.DoesDriverHaveThisLicenseClass(DriverID,(int) licenseClass);
+            return clsLicenseData.DoesDriverHaveThisLicenseClass(DriverID, (int)licenseClass);
         }
         public static bool DoesPersonHaveThisLicenseClass(int PersonID, clsLicenseClass.enLicenseClass LicenseClass)
         {
@@ -157,6 +158,29 @@ namespace DVLD_Buisness
         public bool DoesHaveThisLicenseClass(clsLicenseClass.enLicenseClass LicenseClass)
         {
             return clsLicenseData.DoesPersonHaveThisLicenseClass(this.DriverID, (int)LicenseClass);
-        } 
+        }
+        public bool IsExpired()
+        {
+            return this.ExpirationDate < DateTime.Now;
+        }
+        public clsLicense RenewLicense(int CreatedByUserID, string Notes)
+        {
+            if (IsExpired() || !this.IsActive || _Mode == enMode.AddNew)
+            {
+                return null;
+            }
+            clsApplications NewApp = new clsApplications(this.ApplicationInfo.ApplicantPersonID, CreatedByUserID, clsApplicationTypes.enApplicationType.RenewDrivingLicense, clsApplications.enStatus.Completed);
+            if (!NewApp.Save())
+            { return null; }
+            clsLicense NewLicense = new clsLicense(NewApp.ApplicationID, this.DriverID, this.LicenseClassID, Notes, enIssueReason.Renew, CreatedByUserID);
+            if (!NewLicense.Save())
+            {
+                NewApp.Delete();
+                return null;
+            }
+            this.IsActive = false;
+            return NewLicense;
+        }
+
     }
 }
