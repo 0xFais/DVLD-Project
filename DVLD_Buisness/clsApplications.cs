@@ -35,7 +35,26 @@ namespace DVLD_Buisness
             this.ApplicationStatus = enStatus.New;
 
         }
-
+        public clsApplications
+        (
+            int ApplicantPersonID,
+            int CreatedByUserID,
+            clsApplicationTypes.enApplicationType ApplicationType,
+            enStatus ApplicationStatus
+        )
+        {
+            this.ApplicationID = -1;
+            this.ApplicantPersonID = ApplicantPersonID;
+            this.CreatedByUserID = CreatedByUserID;
+            this.ApplicationDate = DateTime.Now;
+            this.LastStatusDate = DateTime.Now;
+            this.ApplicationType = ApplicationType;
+            this.ApplicationStatus = ApplicationStatus;
+            this.ApplicationTypeInfo = clsApplicationTypes.Find((int)this.ApplicationType);
+            this.UserInfo = clsUser.Find(CreatedByUserID);
+            this.ApplicationFees = this.ApplicationTypeInfo.Fees;
+            this._Mode = enMode.AddNew;
+        }
         private clsApplications
         (
             int ApplicationID,
@@ -59,7 +78,6 @@ namespace DVLD_Buisness
             this.UserInfo = clsUser.Find(CreatedByUserID);
             this._Mode = enMode.Update;
         }
-
         static public clsApplications FindBaseApplication(int ApplicationID)
         {
             int ApplicantPersonID = -1;

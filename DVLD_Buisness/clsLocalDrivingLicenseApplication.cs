@@ -178,8 +178,6 @@ namespace DVLD_Buisness
                 driverID,
                 this.LicenseClassID,
                 Notes,
-                this.ApplicationFees,
-                true,
                 clsLicense.enIssueReason.FirstTime,
                 CreatedByUserID
                 );
